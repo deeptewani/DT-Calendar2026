@@ -28,25 +28,40 @@
         .calendar-card:hover {
             transform: translateY(-2px);
         }
+        .notes {
+            font-size: 0.8rem;
+            color: #4b5563; /* Gray */
+            padding-left: 1rem;
+            border-left: 2px solid #fcd34d; /* Amber border */
+            margin-top: 0.5rem;
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+        .custom-header-container {
+            background-color: #e3f2fd; /* Light blue background */
+            border-color: #b71c1c; /* Deep red for border */
+        }
+        .header-text {
+            color: #b71c1c; /* Deep red text for main headings */
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8">
 
     <div class="max-w-6xl mx-auto">
         <!-- New Header mimicking the Durga Temple banner -->
-        <header class="text-center mb-10 py-6 px-4 bg-blue-100 rounded-xl shadow-lg border-t-4 border-red-700 relative overflow-hidden">
+        <header class="text-center mb-10 py-6 px-4 custom-header-container rounded-xl shadow-lg border-t-4 border-red-700 relative overflow-hidden">
             <!-- Icon placeholders (Left: Temple/Arch, Right: Durga Ma) - Using placeholders to visually represent the banner elements -->
-            <img src="https://placehold.co/100x100/c9e7ff/C4303B?text=Temple+Icon" alt="Temple Icon" class="absolute left-0 top-0 h-full w-auto hidden lg:block opacity-80" style="height:100px; width:100px;">
-            <img src="https://placehold.co/100x100/c9e7ff/C4303B?text=Durga+Ma" alt="Goddess Durga" class="absolute right-0 top-0 h-full w-auto hidden lg:block" style="height:100px; width:100px;">
+            <img src="https://placehold.co/100x100/e3f2fd/C4303B?text=Temple" alt="Temple Icon" class="absolute left-0 top-0 h-full w-auto hidden lg:block opacity-80" style="height:100px; width:100px;">
+            <img src="https://placehold.co/100x100/e3f2fd/C4303B?text=Durga" alt="Goddess Durga" class="absolute right-0 top-0 h-full w-auto hidden lg:block" style="height:100px; width:100px;">
         
             <div class="relative z-10">
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-red-800 tracking-wider">DURGA TEMPLE OF ST. LOUIS</h1>
-                <p class="mt-2 text-base sm:text-lg text-red-700 font-serif leading-relaxed mb-4">
+                <h1 class="text-3xl sm:text-4xl font-extrabold header-text tracking-wider">DURGA TEMPLE OF ST. LOUIS</h1>
+                <p class="mt-2 text-base sm:text-lg header-text font-serif leading-relaxed mb-4">
                     या देवी सर्व भूतेषु मातृ रूपेण संस्थिता । नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः ॥
                 </p>
                 
                 <!-- Address -->
-                <p class="text-lg text-red-700 font-bold mb-2">
+                <p class="text-lg header-text font-bold mb-2">
                     <span class="inline-flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
@@ -57,7 +72,7 @@
                 </p>
                 
                 <!-- Contact Information Row -->
-                <div class="text-sm sm:text-base text-red-800 font-medium flex flex-col sm:flex-row justify-center space-y-1 sm:space-y-0 sm:space-x-8 mt-2">
+                <div class="text-sm sm:text-base header-text font-medium flex flex-col sm:flex-row justify-center space-y-1 sm:space-y-0 sm:space-x-8 mt-2">
                     <span class="inline-flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -102,43 +117,43 @@
                 { date: 3, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 4, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 11, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 13, day: "Tue", name: "Lohri", type: "festival" },
-                { date: 14, day: "Wed", name: "Makar Sankranti / Pongal", type: "festival" },
+                { date: 13, day: "Tue", name: "Lohri", type: "festival", notes: "Celeberate in evening. Outside. Similar to last year." },
+                { date: 14, day: "Wed", name: "Makar Sankranti / Pongal", type: "festival", notes: "NO Celeberation." },
                 { date: 18, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
-                { date: 23, day: "Fri", name: "Vasant Panchami", type: "festival" },
+                { date: 23, day: "Fri", name: "Vasant Panchami / Saraswati Puja", type: "festival", notes: "Celeberate along wih Jagannath pooja on Feb 1st." },
                 { date: 25, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" }
             ],
             "February": [
                 { date: 1, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 7, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 8, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 15, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
-                { date: 15, day: "Sun", name: "Maha Shivaratri", type: "festival" },
+                { date: 15, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja", notes: "Monthly Kirtan will be combined with Maha Shivaratri. Will celeberate it during Kirtan and also in evening similar to 2025. May ask for additional priest and reach out to Raja." },
+                { date: 15, day: "Sun", name: "Maha Shivaratri", type: "festival", notes: "We will celeberate it during Kirtan and also in evening similar to 2025. May ask for additional priest and reach out to Raja." },
                 { date: 22, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" }
             ],
             "March": [
                 { date: 1, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
-                { date: 3, day: "Tue", name: "Holika Dahan", type: "festival" },
-                { date: 4, day: "Wed", name: "Holi", type: "festival" },
+                { date: 3, day: "Tue", name: "Holika Dahan", type: "festival", notes: "New this year. Outside in Evening." },
+                { date: 4, day: "Wed", name: "Holi", type: "festival", notes: "Celeberate on March 7th (Sat) in the afternoon. (Food for Sale)" },
                 { date: 7, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 8, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
                 { date: 15, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
-                { date: 19, day: "Thu", name: "Ugadi / Gudi Padwa (Chaitra Navratri Begins)", type: "festival" },
+                { date: 19, day: "Thu", name: "Ugadi / Gudi Padwa (Chaitra Navratri Begins)", type: "festival", notes: "Navratri - Morning and Evening Durga Chaalisa and Mata Pooja. Similar to 2025." },
                 { date: 22, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" },
-                { date: 26, day: "Thu", name: "Ram Navami", type: "festival" }
+                { date: 26, day: "Thu", name: "Ram Navami", type: "festival", notes: "Special Celeberation in evening." }
             ],
             "April": [
-                { date: 2, day: "Thu", name: "Hanuman Jayanti", type: "festival" },
+                { date: 2, day: "Thu", name: "Hanuman Jayanti", type: "festival", notes: "Celeberate in the Evening." },
                 { date: 4, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 5, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 12, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 14, day: "Tue", name: "Vaisakhi / Baisakhi", type: "festival" },
+                { date: 14, day: "Tue", name: "Vaisakhi / Baisakhi", type: "festival", notes: "NO Celeberation." },
                 { date: 19, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
-                { date: 19, day: "Sun", name: "Akshaya Tritiya", type: "festival" },
+                { date: 19, day: "Sun", name: "Akshaya Tritiya", type: "festival", notes: "NO Celeberation." },
                 { date: 26, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" }
             ],
             "May": [
-                { date: 1, day: "Fri", name: "Buddha Purnima", type: "festival" },
+                { date: 1, day: "Fri", name: "Buddha Purnima", type: "festival", notes: "NO Celeberation." },
                 { date: 2, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 3, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 10, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
@@ -156,28 +171,28 @@
                 { date: 4, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 5, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 12, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 16, day: "Thu", name: "Puri Rath Yatra", type: "festival" },
+                { date: 16, day: "Thu", name: "Puri Rath Yatra", type: "festival", notes: "NO Celeberation." },
                 { date: 19, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
                 { date: 26, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" },
-                { date: 29, day: "Wed", name: "Guru Purnima", type: "festival" }
+                { date: 29, day: "Wed", name: "Guru Purnima", type: "festival", notes: "NO Celeberation." }
             ],
             "August": [
                 { date: 1, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 2, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 9, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 15, day: "Sat", name: "Hariyali Teej", type: "festival" },
+                { date: 15, day: "Sat", name: "Hariyali Teej", type: "festival", notes: "NO Celeberation." },
                 { date: 16, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
-                { date: 17, day: "Mon", name: "Nag Panchami", type: "festival" },
-                { date: 19, day: "Wed", name: "Tulsidas Jayanti", type: "festival" },
+                { date: 17, day: "Mon", name: "Nag Panchami", type: "festival", notes: "NO Celeberation." },
+                { date: 19, day: "Wed", name: "Tulsidas Jayanti", type: "festival", notes: "NO Celeberation." },
                 { date: 23, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" },
-                { date: 28, day: "Fri", name: "Raksha Bandhan", type: "festival" }
+                { date: 28, day: "Fri", name: "Raksha Bandhan", type: "festival", notes: "NO Celeberation." }
             ],
             "September": [
-                { date: 4, day: "Fri", name: "Krishna Janmashtami", type: "festival" },
+                { date: 4, day: "Fri", name: "Krishna Janmashtami", type: "festival", notes: "Celeberate on September 5th (Saturday) in the evening." },
                 { date: 5, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 6, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 13, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 14, day: "Mon", name: "Ganesh Chaturthi", type: "festival" },
+                { date: 14, day: "Mon", name: "Ganesh Chaturthi", type: "festival", notes: "Discuss the logistics: when to stapit, how many days, and rituals." },
                 { date: 20, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
                 { date: 27, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" }
             ],
@@ -185,22 +200,22 @@
                 { date: 3, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 4, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 11, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 11, day: "Sun", name: "Sharad Navratri Begins", type: "festival" },
+                { date: 11, day: "Sun", name: "Sharad Navratri Begins", type: "festival", notes: "Need to discuss the plan and logistics - Garba, Dandiya, Pooja, Havaan, etc." },
                 { date: 18, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
-                { date: 18, day: "Sun", name: "Maha Ashtami", type: "festival" },
+                { date: 18, day: "Sun", name: "Maha Ashtami / Saraswati Puja", type: "festival", notes: "Coincides with Monthly Kirtan." },
                 { date: 19, day: "Mon", name: "Maha Navami", type: "festival" },
-                { date: 20, day: "Tue", name: "Dussehra (Vijaya Dashami)", type: "festival" },
+                { date: 20, day: "Tue", name: "Dussehra (Vijaya Dashami)", type: "festival", notes: "Ravan Dahan outside in evening." },
                 { date: 25, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" },
-                { date: 29, day: "Thu", name: "Karwa Chauth", type: "festival" }
+                { date: 29, day: "Thu", name: "Karwa Chauth", type: "festival", notes: "During Day time." }
             ],
             "November": [
                 { date: 1, day: "Sun", name: "Jagannath Pooja", type: "custom-pooja" },
                 { date: 7, day: "Sat", name: "Sunderkand Pooja", type: "custom-pooja" },
                 { date: 8, day: "Sun", name: "Satyanarayan Katha", type: "custom-pooja" },
-                { date: 8, day: "Sun", name: "Diwali (Deepavali)", type: "festival" },
-                { date: 11, day: "Wed", name: "Bhai Dooj", type: "festival" },
+                { date: 8, day: "Sun", name: "Diwali (Deepavali)", type: "festival", notes: "Evening Celeberation. Lakshmi pooja, Fireworks." },
+                { date: 11, day: "Wed", name: "Bhai Dooj", type: "festival", notes: "NO Celeberation." },
                 { date: 15, day: "Sun", name: "Monthly Kirtan", type: "custom-pooja" },
-                { date: 15, day: "Sun", name: "Chhath Puja", type: "festival" },
+                { date: 15, day: "Sun", name: "Chhath Puja", type: "festival", notes: "NO Celeberation." },
                 { date: 21, day: "Sat", name: "Tulsi Vivah", type: "festival" },
                 { date: 22, day: "Sun", name: "Gayatri Pooja", type: "custom-pooja" }
             ],
@@ -227,14 +242,20 @@
                     ? 'bg-red-50 text-red-700 festival' 
                     : 'bg-green-50 text-green-700 custom-pooja';
                 
+                // Determine if event name needs to be wrapped
+                const nameContent = `<span class="text-sm px-2 py-0.5 rounded-full ${badgeClass}">${event.name}</span>`;
+                
                 eventsHtml += `
-                    <li class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition duration-150">
-                        <div class="w-16 flex-shrink-0 text-center">
-                            <span class="text-2xl font-bold text-amber-700">${event.date}</span>
-                            <span class="text-xs font-medium text-gray-500 block">${event.day}</span>
-                        </div>
-                        <div class="flex-grow">
-                            <span class="text-sm px-2 py-0.5 rounded-full ${badgeClass}">${event.name}</span>
+                    <li class="flex flex-col p-2 rounded-lg hover:bg-gray-50 transition duration-150 border-b border-gray-100 last:border-b-0">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-16 flex-shrink-0 text-center pt-1">
+                                <span class="text-2xl font-bold text-amber-700">${event.date}</span>
+                                <span class="text-xs font-medium text-gray-500 block">${event.day}</span>
+                            </div>
+                            <div class="flex-grow pt-1">
+                                ${nameContent}
+                                ${event.notes ? `<p class="notes">${event.notes}</p>` : ''}
+                            </div>
                         </div>
                     </li>
                 `;
@@ -243,7 +264,7 @@
             return `
                 <div class="calendar-card bg-white p-6 rounded-xl border-t-4 border-green-600">
                     <h3 class="text-3xl font-bold mb-4 text-gray-800 border-b pb-2">${monthName}</h3>
-                    <ul class="space-y-2">
+                    <ul class="space-y-1">
                         ${eventsHtml}
                     </ul>
                 </div>
