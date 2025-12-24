@@ -1,5 +1,5 @@
 Month,Date,Day,Name,Type,Notes
-January,3,Sat,Sunderkand Pooja, Monthly, 11.00 AM to 1.00 PM followed by prasad and food for purchase
+January,3,Sat,Sunderkand Pooja, Monthly, 
 January,4,Sun,Jagannath Pooja,custom-pooja,
 January,11,Sun,Satyanarayan Katha,custom-pooja,
 January,13,Tue,Lohri,festival,Celebrate in evening. Outside.
@@ -89,4 +89,5 @@ December,13,Sun,Satyanarayan Katha,custom-pooja,
 December,20,Sun,Monthly Kirtan,custom-pooja,
 December,20,Sun,Geeta Jayanti,festival,
 December,27,Sun,Gayatri Pooja,custom-pooja,
+
 
