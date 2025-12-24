@@ -59,7 +59,14 @@
         async function initCalendar() {
             try {
                // const response = await fetch('https://github.com/deeptewani/DT-Calendar2026/blob/be16265898953af3123357720dfbeaadad54894e/events_2026.csv');
-               const response = await fetch('https://deeptewani.github.io/DT-Calendar2026/events_2026.csv')
+               const response = await fetch('https://deeptewani.github.io/DT-Calendar2026/events_2026.csv');
+            
+                  // 'https://raw.githubusercontent.com/deeptewani/DT-Calendar2026/main/events_2026.csv',
+                //'https://raw.githubusercontent.com/deeptewani/DT-Calendar2026/c679f19a84eb98f9949fb8dfff0f4504817666a6/events_2026.csv',
+              //  'https://deeptewani.github.io/DT-Calendar2026/events_2026.csv'
+            //];
+                
+                
                 const csvData = await response.text();
                 const events = parseCSV(csvData);
 
@@ -119,6 +126,7 @@
 </body>
 
 </html>
+
 
 
 
