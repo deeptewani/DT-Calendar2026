@@ -58,7 +58,7 @@
 
         async function initCalendar() {
             try {
-                const response = await fetch('C:\Users\tewan\Downloads\events_2026.csv');
+                const response = await fetch('events_2026.csv');
                 const csvData = await response.text();
                 const events = parseCSV(csvData);
 
@@ -116,4 +116,5 @@
         window.onload = initCalendar;
     </script>
 </body>
+
 </html>
