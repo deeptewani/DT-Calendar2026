@@ -1,6 +1,6 @@
 Month,Date,Day,Name,Type,Notes
-January,3,Sat,Sunderkand Pooja, Monthly, Morning  
-January,4,Sun,Jagannath Pooja,custom-pooja,
+January,3,Sat,Sunderkand Pooja, Monthly, Monthly Pooja: 11.00 AM - 1.00 PM
+January,4,Sun,Jagannath Pooja,custom-pooja, Monthly Pooja: 11.00 AM - 1.00 PM.  
 January,11,Sun,Satyanarayan Katha,custom-pooja,
 January,13,Tue,Lohri,festival,Celebrate in evening. Outside.
 January,14,Wed,Makar Sankranti / Pongal,festival,NO Celebration.
@@ -89,6 +89,7 @@ December,13,Sun,Satyanarayan Katha,custom-pooja,
 December,20,Sun,Monthly Kirtan,custom-pooja,
 December,20,Sun,Geeta Jayanti,festival,
 December,27,Sun,Gayatri Pooja,custom-pooja,
+
 
 
 
