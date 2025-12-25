@@ -1,0 +1,80 @@
+<script>
+    let allEvents = [];
+
+    // 1. Function to parse CSV text into an array of objects
+    function parseCSV(text) {
+        const rows = text.split('\n');
+        // Remove header and empty rows
+        const dataRows = rows.slice(1).filter(row => row.trim() !== "");
+        
+        return dataRows.map(row => {
+            // Using a regex to handle potential commas inside quotes
+            const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            return {
+                date: columns[0].trim(),
+                day: columns[1].trim(),
+                title: columns[2].trim(),
+                desc: columns[3].trim()
+            };
+        });
+    }
+
+    // 2. Modified render function
+    function renderEvents(filter = "") {
+        const grid = document.getElementById('eventGrid');
+        grid.innerHTML = "";
+        
+        allEvents.forEach(event => {
+            const matchesSearch = 
+                event.title.toLowerCase().includes(filter.toLowerCase()) || 
+                event.date.toLowerCase().includes(filter.toLowerCase()) ||
+                event.day.toLowerCase().includes(filter.toLowerCase());
+
+            if (matchesSearch) {
+                const card = `
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-date">${event.date}, 2026</span>
+                            <span class="event-day">${event.day}</span>
+                        </div>
+                        <div class="event-body">
+                            <div class="event-title">${event.title}</div>
+                            <div class="event-desc">${event.desc}</div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            }
+        });
+
+        // Show message if no results
+        if (grid.innerHTML === "") {
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #666;">No events found matching "${filter}"</p>`;
+        }
+    }
+
+    // 3. Search input handler
+    function searchCalendar() {
+        const query = document.getElementById('calendarSearch').value;
+        renderEvents(query);
+    }
+
+    // 4. Fetch the CSV file on page load
+    async function loadCalendarData() {
+        try {
+            const response = await fetch('calendar_events.csv');
+            if (!response.ok) throw new Error("Could not load CSV file");
+            
+            const csvText = await response.text();
+            allEvents = parseCSV(csvText);
+            renderEvents(); // Initial render
+        } catch (error) {
+            console.error("Error:", error);
+            document.getElementById('eventGrid').innerHTML = 
+                `<p style="color:red; text-align:center; grid-column:1/-1;">Error loading calendar data. Please ensure 'calendar_events.csv' exists.</p>`;
+        }
+    }
+
+    // Initialize
+    loadCalendarData();
+</script>
