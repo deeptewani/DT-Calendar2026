@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .dt-container {
+            max-width: 480px;
+            margin: 20px auto;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            border: 2px solid #B71C1C;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .dt-header {
+            background: linear-gradient(135deg, #B71C1C 0%, #8b0000 100%);
+            color: #FFD700;
+            padding: 20px 15px;
+            text-align: center;
+            border-bottom: 5px solid #FFD700;
+        }
+        .dt-header h2 { margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .dt-header p { margin: 5px 0 0; font-size: 13px; color: #fff; font-weight: 500; }
+
+        .today-highlight {
+            background: #FFFDE7;
+            border-bottom: 2px solid #FFD700;
+            padding: 15px;
+            position: relative;
+        }
+        .today-label {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            background: #B71C1C;
+            color: #FFD700;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 0 0 4px 4px;
+            text-transform: uppercase;
+        }
+
+        .section-header {
+            background: #FFF8E1;
+            color: #B71C1C;
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-bottom: 1px solid #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-table { width: 100%; border-collapse: collapse; }
+        .event-table td { padding: 12px 15px; border-bottom: 1px solid #f2f2f2; vertical-align: middle; }
+        
+        .deity-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            overflow: hidden;
+        }
+        .deity-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        .date-box { text-align: center; width: 45px; line-height: 1.1; }
+        .date-box .day { display: block; font-size: 18px; font-weight: 800; color: #B71C1C; }
+        .date-box .month { font-size: 10px; color: #999; text-transform: uppercase; }
+
+        .event-info { padding-left: 5px; }
+        .event-title { display: block; font-size: 15px; font-weight: 700; color: #333; }
+        .event-time { font-size: 12px; color: #666; }
+
+        .badge {
+            font-size: 9px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            color: #fff;
+            white-space: nowrap;
+        }
+        .bg-today { background: #B71C1C; }
+        .bg-large { background: #6A1B9A; }    
+        .bg-festival { background: #FF5722; } 
+        .bg-monthly { background: #2E7D32; }  
+
+        .footer-info {
+            background: #f9f9f9;
+            padding: 15px;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .footer-info b { color: #B71C1C; display: block; margin-bottom: 3px; }
+        .scroll-area { max-height: 400px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+
+<div class="dt-container">
+    <header class="dt-header">
+<div class="header-container-float">
+	<div class="deity-icon" style="width: 50px; height: 50px;"> <img src="DT_Logo.jpeg" 
+	alt="Description of the image" class="float-image"></div>     
+        <h2>Durga Temple Calendar</h2>
+        <p>Saint Louis, Missouri</p>
+
+    </header>
+
+    <div class="scroll-area">
+        <!-- Dynamic Highlight Section -->
+        <div id="today-section" class="today-highlight">
+            <span class="today-label">Happening Today</span>
+            <div id="today-content" style="display: flex; align-items: center; gap: 15px;">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- Weekly Recurring -->
+        <div class="section-header">Weekly Recurring Schedule</div>
+        <table id="weekly-table" class="event-table"></table>
+
+        <!-- Large Events -->
+        <div class="section-header">Major February Festivals</div>
+        <table id="large-table" class="event-table"></table>
+
+        <!-- Monthly Poojas -->
+        <div class="section-header">Monthly February Poojas</div>
+        <table id="monthly-table" class="event-table"></table>
+    </div>
+
+    <div class="footer-info">
+        <div>
+            <b>Aarti Times</b>
+            Daily: 9:30 AM<br>
+            Evening: 7:00 PM<br>
+            Sun Eve: 6:30 PM
+        </div>
+        <div style="text-align: right;">
+            <b>Temple Hours</b>
+            M-F: 9-11 AM, 5:30-7:30 PM<br>
+            Sat-Sun: 9:00 AM - 7:30 PM
+        </div>
+        <div style="grid-column: span 2; text-align: center; border-top: 1px solid #ddd; padding-top: 10px; margin-top: 5px;">
+            <a href="#" style="color: #B71C1C; text-decoration: none; font-weight: bold; font-size: 13px;">View Full 2026 Calendar →</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const CONFIG = {
+        month: "FEB",
+        monthIndex: 1, // 0 for Jan, 1 for Feb
+        year: 2026
+    };
+
+    const DEITY_ICONS = {
+        shiva: "shivpooja.png",
+        hanuman: "DT_hanuman.png",
+        ganesh: "dt_ganesha.png",
+        saibaba: "DT_saibaba.jpg",
+        durga: "durga.png",
+        krishna: "jagannath.jpeg",
+        vishnu: "satyanarayan.jpg",
+        notes: "bhajan.jpg",
+        user: "DT_Jalaram_bapa.png",
+        om: "DT_mata.png",
+        guru: "gayatri.jpg"
+    };
+
+    const DATA = {
+        weekly: [
+            { day: 1, name: "Shiv Pooja", icon: "shiva", time: "6:00 PM - 7:00 PM" },
+            { day: 2, name: "Hanuman Chaalisa", icon: "hanuman", time: "6:00 PM - 7:00 PM" },
+            { day: 3, name: "Ganesha Pooja", icon: "ganesh", time: "6:00 PM - 7:00 PM" },
+            { day: 4, name: "Sai Baba Bhajans", icon: "saibaba", time: "6:00 PM - 7:00 PM" },
+            { day: 5, name: "Mata Pooja", icon: "durga", time: "6:00 PM - 7:00 PM" }
+        ],
+        special: [
+            { date: 1, name: "Jagannath Pooja", icon: "krishna", type: "large", time: "11:00 AM - 1:00 PM", notes: "Food for Sale" },
+            { date: 6, name: "Durga & Lakshmi Pooja", icon: "durga", type: "monthly", time: "6:00 PM - 7:00 PM" },
+            { date: 7, name: "Sunderkand Pooja", icon: "hanuman", type: "monthly", time: "11:00 AM - 1:00 PM" },
+            { date: 8, name: "Satyanarayan Katha", icon: "vishnu", type: "monthly", time: "11:00 AM - 1:00 PM" },
+            { date: 8, name: "Bhajan Sandhya", icon: "notes", type: "monthly", time: "4:30 PM - 5:30 PM" },
+            { date: 12, name: "Jalaram Bapa Bhajans", icon: "user", type: "monthly", time: "Evening" },
+            { date: 15, name: "Maha Shivaratri", icon: "shiva", type: "festival", time: "Evening Celebrations" },
+            { date: 15, name: "Monthly Kirtan", icon: "om", type: "large", time: "11:00 AM - 1:00 PM", notes: "Langar" },
+            { date: 22, name: "Gayatri Satsang", icon: "guru", type: "monthly", time: "11:00 AM - 1:00 PM" }
+        ]
+    };
+
+    function init() {
+        // Use Jan 27, 2026 as "today" for preview purposes
+        // Change to 'new Date()' for live usage
+        const today = new Date(2026, 0, 27); 
+        const currentDayOfWeek = today.getDay(); // 0 is Sun, 1 is Mon...
+        const currentDate = today.getDate();
+        const currentMonth = today.getMonth();
+
+        const monthShort = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+        // 1. Render Today's Highlight
+        let todayEvents = [];
+        
+        // Check Weekly
+        const todayWeekly = DATA.weekly.find(w => w.day === currentDayOfWeek);
+        if (todayWeekly) todayEvents.push({ ...todayWeekly, category: 'Weekly' });
+        
+        // Check Special (Only if month matches CONFIG)
+        const todaySpecial = DATA.special.filter(s => s.date === currentDate && currentMonth === CONFIG.monthIndex);
+        todayEvents.push(...todaySpecial);
+
+        const todayHtml = `
+            <div class="date-box">
+                <span class="month">${monthShort[currentMonth]}</span>
+                <span class="day">${currentDate}</span>
+            </div>
+            <div style="flex-grow: 1;">
+                ${todayEvents.map(ev => `
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                        <div class="deity-icon" style="width: 28px; height: 28px;">
+                            <img src="${DEITY_ICONS[ev.icon]}" alt="">
+                        </div>
+                        <span class="event-title" style="color: #B71C1C; font-size: 14px;">${ev.name}</span>
+                    </div>
+                `).join('')}
+                <span class="event-time" style="display: block; font-weight: bold; margin-top: 4px;">
+                    Evening Hours: 5:30 PM - 7:30 PM
+                </span>
+            </div>
+        `;
+        document.getElementById('today-content').innerHTML = todayHtml;
+
+        // 2. Render Weekly Table
+        document.getElementById('weekly-table').innerHTML = DATA.weekly.map(w => `
+            <tr style="${w.day === currentDayOfWeek ? 'background: #fff9f0;' : ''}">
+                <td width="40"><div class="deity-icon"><img src="${DEITY_ICONS[w.icon]}" alt=""></div></td>
+                <td>
+                    <span class="event-title">${w.name}</span>
+                    <span class="event-time">${w.time}</span>
+                </td>
+                <td align="right">
+                    ${w.day === currentDayOfWeek ? '<span class="badge bg-today">Today</span>' : ''}
+                </td>
+            </tr>
+        `).join('');
+
+        // 3. Render Large Events
+        document.getElementById('large-table').innerHTML = DATA.special
+            .filter(s => s.type === 'large' || s.type === 'festival')
+            .map(s => renderSpecialRow(s, currentDate, currentMonth))
+            .join('');
+
+        // 4. Render Monthly Table
+        document.getElementById('monthly-table').innerHTML = DATA.special
+            .filter(s => s.type === 'monthly')
+            .map(s => renderSpecialRow(s, currentDate, currentMonth))
+            .join('');
+    }
+
+    function renderSpecialRow(s, curDate, curMonth) {
+        const isToday = s.date === curDate && curMonth === CONFIG.monthIndex;
+        const badgeClass = s.type === 'festival' ? 'bg-festival' : (s.type === 'large' ? 'bg-large' : 'bg-monthly');
+        const badgeLabel = s.type === 'festival' ? 'Festival' : (s.type === 'large' ? 'Large' : 'Monthly');
+
+        return `
+            <tr style="${isToday ? 'background: #fff9f0;' : ''}">
+                <td class="date-box"><span class="month">${CONFIG.month}</span><span class="day">${s.date}</span></td>
+                <td width="40"><div class="deity-icon"><img src="${DEITY_ICONS[s.icon]}" alt=""></div></td>
+                <td class="event-info">
+                    <span class="event-title">${s.name}</span>
+                    <span class="event-time">${s.time} ${s.notes ? '('+s.notes+')' : ''}</span>
+                </td>
+                <td align="right">
+                    ${isToday ? '<span class="badge bg-today">Today</span>' : `<span class="badge ${badgeClass}">${badgeLabel}</span>`}
+                </td>
+            </tr>
+        `;
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
